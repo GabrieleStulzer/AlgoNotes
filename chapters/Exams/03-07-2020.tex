@@ -1,0 +1,23 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\begin{document}
+  \paragraph{BinaryInsert} inserisce un array ordinato di numeri in un albero con T.size nei nodi. Poichè questo algoritmo è sostanzialmente una vista, la sua complessità sarà pari a $\Theta(n)$
+
+  \begin{algorithm}
+    \NoCaptionOfAlgo
+    \caption{biRec(\textsc{Tree} t, \KwSty{int}[] A, \KwSty{int} i)}
+    \KwSty{int} leftSize = 0\\
+    \If {T.left != \KwSty{nil}} {
+      leftSize = t.left.size\\
+      \FuncSty{biRec}(t.left, A, i)\\
+    }
+
+    t.value = A[i+leftSize]\\
+    \If {T.left != \KwSty{nil}} {
+      \FuncSty{biRec}(t.left, A, i + leftSize + 1)\\
+    }
+  \end{algorithm}
+
+  \paragraph{hasMajority} Restituisce true se il vettore contiene un valore di maggioranza, ovvero un valore che compare più di $n/2$ volte. Il costo computazionale, dato dalla ricerca dicotomica, è $O(\log n)$.
+
+\end{document}

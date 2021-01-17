@@ -1,0 +1,170 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\begin{document}
+  \begin{algorithm}[H]
+    \NoCaptionOfAlgo
+    \caption{\textsc{sequence}}
+
+    \KwSty{boolean} isEmpty()\;
+    \KwSty{boolean} finished(\DataSty{Pos} p)\;
+    \DataSty{Pos} head()\;
+    \DataSty{Pos} tail()\;
+    \DataSty{Pos} next(Pos p)\;
+    \DataSty{Pos} prev(Pos p)\;
+    \DataSty{Pos} insert(\DataSty{Pos} p, \DataSty{Item} v)\;
+    \DataSty{Pos} remove(\DataSty{Pos} p)\;
+    Item read(\DataSty{Pos} p)\;
+    write(\DataSty{Pos} p , \DataSty{Item} v)\;
+  \end{algorithm}
+
+  \begin{algorithm}[H]
+    \NoCaptionOfAlgo
+    \caption{\textsc{Set}}
+    \KwSty{int} = \FuncSty{size()}\\
+    \KwSty{boolean} contains(\DataSty{\textsc{Item}} x)\\
+    insert(\DataSty{Item} x)\\
+    remvoe(\DataSty{Item} x)\\
+    \DataSty{Set} union(\DataSty{Set} A, \DataSty{Set} B)\\
+    \DataSty{Set} intersection(\DataSty{Set} A, \DataSty{Set} B)\\
+    \DataSty{Set} difference(\DataSty{Set} A, \DataSty{Set} B)\\
+  \end{algorithm}
+
+  \begin{algorithm}[H]
+    \NoCaptionOfAlgo
+    \caption{\textsc{Dictionary}}
+
+    \DataSty{Item} lookup(\DataSty{Item} k)\\
+    insert(\DataSty{Item} k, \DataSty{Item} v)\\
+    remove(\DataSty{Item} x)\\
+  \end{algorithm}
+
+  \paragraph{Lista bidirezionale} Lista bidirezinale con sentinella
+
+  \section{Stack}
+  \paragraph{Stack} Una struttura dati dinamica, lineare in cui l'emento rimosso dall'operazione di cancellazione è predeterminato: "quello che per meno tempo è rimasto nell'insieme" (LIFO)
+
+  \begin{algorithm}[H]
+    \NoCaptionOfAlgo
+    \caption{\textsc{Stack}}
+
+    \KwSty{boolean} isEmpty()\\
+    push(\DataSty{Item} x)\\
+    \DataSty{Item} pop()\\
+    \DataSty{Item} top()\\
+  \end{algorithm}
+
+  \section{Queue}
+  \paragraph{Queue} Una struttura dati dinamica, lineare in cui l'emento rimosso dall'operazione di cancellazione è predeterminato: "quello che per più tempo è rimasto nell'insieme" (FIFO)
+
+  \begin{algorithm}[H]
+    \NoCaptionOfAlgo
+    \caption{\textsc{Queue}}
+
+    \KwSty{boolean} isEmpty()\\
+    enqueue(\DataSty{Item} x)\\
+    \DataSty{Item} dequeue()\\
+    \DataSty{Item} top()\\
+  \end{algorithm}
+
+
+  \section{Tree}
+  \paragraph{Tree Data Structure} Binary Tree Data Structure
+
+  \begin{algorithm}[H]
+    \NoCaptionOfAlgo
+    \caption{\textsc{Tree}}
+
+    Tree(\DataSty{Item} v)\\
+    \DataSty{Item} read()\\
+    write(\DataSty{Item} x)\\
+    \DataSty{Item} top()\\
+    \DataSty{Tree} left()\\
+    \DataSty{Tree} right()\\
+
+    insertLeft(\DataSty{Tree} x)\\
+    insertRight(\DataSty{Tree} x)\\
+
+    deleteLeft()\\
+    deleteRight()\\
+  \end{algorithm}
+
+  \paragraph{Breath First Search} Breath first search. Costo Computazionale $\Theta(n)$ in quanto ogni nodo viene visitato al massimo una volta.
+
+  \begin{algorithm}[H]
+    \NoCaptionOfAlgo
+    \caption{dfs(\DataSty{\textsc{Tree}} t)}
+
+    \If{ t != \KwSty{nil}}{
+      \tcc{Pre Order Visit}
+      \KwSty{print} t\\
+      \tcc{In Order Visit}
+      dfs(t.left())\\
+      \KwSty{print} t\\
+      \tcc{Post Order Visit}
+      dfs(t.right())\\
+      \KwSty{print} t\\
+    }
+  \end{algorithm}
+
+  \paragraph{Generic Tree} Albero generico, non binario
+
+  \begin{algorithm}[H]
+    \NoCaptionOfAlgo
+    \caption{\textsc{Tree}}
+
+    Tree(\DataSty{Item} v)\\
+    \DataSty{Item} read()\\
+    write(\DataSty{Item} x)\\
+    \DataSty{Tree} parent()\\
+    \DataSty{Tree} leftmostChild()\\
+    \DataSty{Tree} rightSibling()\\
+
+    insertChild(\DataSty{Tree} x)\\
+    insertSibling(\DataSty{Tree} x)\\
+
+    deleteChild()\\
+    deleteSibling()\\
+  \end{algorithm}
+
+
+  \paragraph{Depth-First Search} Depth-First Search
+
+  \begin{algorithm}[H]
+    \NoCaptionOfAlgo
+    \caption{dfs(\DataSty{\textsc{Tree}} t)}
+
+    \If{ t != \KwSty{nil}}{
+      \tcc{Pre Order Visit}
+      \KwSty{print} t\\
+
+      \DataSty{Tree} u = t.leftmostChild()
+      \While{u != \KwSty{nil}} {
+          \FuncSty{dfs}(\ArgSty{u})
+          u = u.rightSibling()
+        }
+      \tcc{Post Order Visit}
+      \KwSty{print} t\\
+    }
+  \end{algorithm}
+
+  \paragraph{Breadth-First Search} Breadth First Search
+
+  \begin{algorithm}[H]
+    \NoCaptionOfAlgo
+    \caption{bfs(\DataSty{\textsc{Tree}} t)}
+
+    \DataSty{Queue} Q = Queue()
+    Q.enqueue(t)
+
+    \While{\KwSty Q.isEmpty()} {
+      \DataSty{Tree} u = Q.dequeue()
+      \tcc{Visita per livello nodo u}
+      \KwSty{print} t\\
+      u = t.leftmostChild()
+      \While{u != \KwSty{nil}} {
+          Q.enqueue(u)
+          u = u.rightSibling()
+        }
+      }
+  \end{algorithm}
+\end{document}

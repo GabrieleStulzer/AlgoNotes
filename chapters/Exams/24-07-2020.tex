@@ -1,0 +1,23 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\begin{document}
+  \paragraph{closeDuplicates} Trova numeri duplicati in array raggio k
+
+  \paragraph{Tree Mirror} Find if tree is Mirror
+
+  \begin{algorithm}
+    \NoCaptionOfAlgo
+    \caption{\KwSty{boolean} isMirror(\textsc{Tree} $t_L$, \textsc{Tree}, $t_R$)}
+
+    \eIf { $t_L$ == \KwSty{nil} \KwSty{and} $t_R$ == \KwSty{nil}}{
+        \KwSty{return true}\\
+    }{
+      \eIf{ $t_L$ != \KwSty{nil} \KwSty{and} $t_R$ != \KwSty{nil}} {
+        \KwSty{return} isMirror($t_L$.right, $t_R$.left) \KwSty{and}isMirror($t_R$.right, $t_L$.left)\\
+      } {
+        \KwSty{return false}\\
+    }}
+
+  \end{algorithm}
+
+\end{document}

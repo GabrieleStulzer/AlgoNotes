@@ -1,0 +1,29 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\begin{document}
+  \paragraph{Longest Single} Restituisce la lunghezza del più lungo sottovettore contiguo che non contiene valori duplicati
+
+  \begin{algorithm}[H]
+    \NoCaptionOfAlgo
+    \caption{\KwSty{int} longestSingle(\KwSty{int}[] A, \KwSty{int} n)}
+    \DataSty{Set} S = Set()\\
+    \KwSty{int} maxSoFar = 0\\
+    \KwSty{int} start = 1\\
+    \KwSty{int} end = 1\\
+    \While {end $\leq$ n} {
+      \eIf{S.contains(A[end])} {
+        \While{A[start] != A[end]} {
+          S.remove(A[start])\\
+          start = start + 1\\
+        }
+        start = start + 1\\
+      } {
+        S.insert(A[end])\\
+        maxSoFar = max(maxSoFar, end - start + 1)\\
+      }
+      end = end + 1\\
+    }
+    \KwSty{return} maxSoFar\\
+  \end{algorithm}
+
+\end{document}
