@@ -1,0 +1,78 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\begin{document}
+  \paragraph{Visita} Algoritmo generico per la visita di un grafo
+
+  \begin{algorithm}[H]
+    \NoCaptionOfAlgo
+    \caption{graphTraversal(\textsc{Graph} G, \textsc{Node} r)}
+
+    \DataSty{Set} S = Set()\\
+    S.insert(r)\\
+    \{ marca nodo r \}\\
+    \While {S.size() > 0 } {
+      \DataSty{Node} u = S.remove()\\
+      \{ visita il nodo u\}\\
+      \ForEach { $ v \in G$.adj(u)} {
+        \{ visita l'arco (u, v) \}\\
+        \If {v non è ancora stato marcato} {
+          {marca il nodo v}\\
+          S.insert(v)\\
+        }
+      }
+    }
+
+  \end{algorithm}
+
+  \paragraph{Breadth-first search} Ricerca nell'albero per livelli
+
+  \begin{algorithm}[H]
+    \NoCaptionOfAlgo
+    \caption{bfs(\textsc{Graph} G, \textsc{Node} r}
+
+    \DataSty{Queue} Q = Queue()
+    Q.enqueue(r)
+    \KwSty{boolean}[] visited = \KwSty{new boolean}[G.size()]
+    \ForEach{ $u\in G.V() - {r}$} {
+      visited[u] = \KwSty{false}
+    }
+    visited[u] = \KwSty{true}
+    \While{\KwSty{not} Q.isEmpty()} {
+      \DataSty{Node} u = Q.dequeue()
+      \{ visita il nodo u \}
+      \ForEach{ $v\in G.adj(u)$} {
+        \{ visita l'arco (u,v) \}
+        \If{\KwSty{not} visited[v]}{
+          visited[v] = true
+          Q.enqueue(v)
+        }
+      }
+    }
+  \end{algorithm}
+
+  \paragraph{Distance} Calcola la distanza tra due nodi. Complessità è $O(m+n)$
+
+  \begin{algorithm}[H]
+    \NoCaptionOfAlgo
+    \caption{bfs(\textsc{Graph} G, \textsc{Node} r}
+
+    \DataSty{Queue} Q = Queue()
+    Q.enqueue(r)
+    \ForEach{ $u\in G.V() - {r}$} {
+      distance[u] = $\infty$
+    }
+    distance[u] = 0
+    \While{\KwSty{not} Q.isEmpty()} {
+      \DataSty{Node} u = Q.dequeue()
+      \{ visita il nodo u \}
+      \ForEach{ $v\in G.adj(u)$} {
+        \{ visita l'arco (u,v) \}
+        \If{distance[v] == $\infty$}{
+          distance[v] = distance[u] + 1
+          Q.enqueue(v)
+        }
+      }
+    }
+  \end{algorithm}
+
+\end{document}
